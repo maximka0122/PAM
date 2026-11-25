@@ -5,6 +5,7 @@ class CollectionCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String image;
+  final String fallbackAsset;
   final Color bgColor;
   final bool imageOnLeft;
   final double height;
@@ -14,6 +15,7 @@ class CollectionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.image,
+    this.fallbackAsset = "assets/images/8.png",
     this.bgColor = const Color(0xFFF8F8F8),
     this.imageOnLeft = false,
     this.height = 175,
@@ -66,16 +68,14 @@ class CollectionCard extends StatelessWidget {
             height: 155,
             width: 120,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Container(width: 120, height: 155, color: Colors.grey.shade300, child: const Icon(Icons.person, size: 40, color: Colors.grey)),
+            errorBuilder: (context, error, stackTrace) => Image.asset(fallbackAsset, width: 120, height: 155, fit: BoxFit.cover),
           )
         : Image.network(
             image,
             height: 155,
             width: 120,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Container(width: 120, height: 155, color: Colors.grey.shade300, child: const Icon(Icons.person, size: 40, color: Colors.grey)),
+            errorBuilder: (context, error, stackTrace) => Image.asset(fallbackAsset, width: 120, height: 155, fit: BoxFit.cover),
           );
 
     final imageContent = Center(
@@ -127,6 +127,7 @@ class SmallCollectionCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String image;
+  final String fallbackAsset;
   final bool imageOnLeft;
 
   const SmallCollectionCard({
@@ -134,6 +135,7 @@ class SmallCollectionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.image,
+    this.fallbackAsset = "assets/images/10.png",
     this.imageOnLeft = true,
   });
 
@@ -183,16 +185,14 @@ class SmallCollectionCard extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Container(color: Colors.grey.shade300, child: const Icon(Icons.person, color: Colors.grey)),
+            errorBuilder: (context, error, stackTrace) => Image.asset(fallbackAsset, fit: BoxFit.cover),
           )
         : Image.network(
             image,
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Container(color: Colors.grey.shade300, child: const Icon(Icons.person, color: Colors.grey)),
+            errorBuilder: (context, error, stackTrace) => Image.asset(fallbackAsset, fit: BoxFit.cover),
           );
 
     final imageContent = ClipRRect(

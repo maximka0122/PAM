@@ -4,9 +4,15 @@ import '../utils/app_colors.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final String fallbackAsset;
   final VoidCallback onTap;
 
-  const ProductCard({super.key, required this.product, required this.onTap});
+  const ProductCard({
+    super.key,
+    required this.product,
+    this.fallbackAsset = "assets/images/2.jpg",
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class ProductCard extends StatelessWidget {
             height: double.infinity,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) =>
-                Container(color: Colors.grey.shade200, child: const Icon(Icons.checkroom, size: 40, color: Colors.grey)),
+                Image.asset(fallbackAsset, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
           )
         : Image.network(
             product.image,
@@ -25,7 +31,7 @@ class ProductCard extends StatelessWidget {
             height: double.infinity,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) =>
-                Container(color: Colors.grey.shade200, child: const Icon(Icons.checkroom, size: 40, color: Colors.grey)),
+                Image.asset(fallbackAsset, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
           );
 
     return GestureDetector(
